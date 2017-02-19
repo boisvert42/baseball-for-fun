@@ -1,0 +1,152 @@
+<HTML>
+<HEAD>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<script src="/js/d3.v3.min.js"></script>
+<script src="/js/nv.d3.js"></script>
+<style type="text/css">
+div.inline { float:left; padding-left: 10px;}
+.clearBoth { clear:both; }
+</style>
+<link rel="stylesheet" href="/style/nv.d3.css" type="text/css">
+
+<style type='text/css'>@-webkit-keyframes uil-default-anim { 0% { opacity: 1} 100% {opacity: 0} }@keyframes uil-default-anim { 0% { opacity: 1} 100% {opacity: 0} }.uil-default-css > div:nth-of-type(1){-webkit-animation: uil-default-anim 1s linear infinite;animation: uil-default-anim 1s linear infinite;-webkit-animation-delay: -0.5s;animation-delay: -0.5s;}.uil-default-css { position: relative;background:none;width:200px;height:200px;}.uil-default-css > div:nth-of-type(2){-webkit-animation: uil-default-anim 1s linear infinite;animation: uil-default-anim 1s linear infinite;-webkit-animation-delay: -0.4166666666666667s;animation-delay: -0.4166666666666667s;}.uil-default-css { position: relative;background:none;width:200px;height:200px;}.uil-default-css > div:nth-of-type(3){-webkit-animation: uil-default-anim 1s linear infinite;animation: uil-default-anim 1s linear infinite;-webkit-animation-delay: -0.33333333333333337s;animation-delay: -0.33333333333333337s;}.uil-default-css { position: relative;background:none;width:200px;height:200px;}.uil-default-css > div:nth-of-type(4){-webkit-animation: uil-default-anim 1s linear infinite;animation: uil-default-anim 1s linear infinite;-webkit-animation-delay: -0.25s;animation-delay: -0.25s;}.uil-default-css { position: relative;background:none;width:200px;height:200px;}.uil-default-css > div:nth-of-type(5){-webkit-animation: uil-default-anim 1s linear infinite;animation: uil-default-anim 1s linear infinite;-webkit-animation-delay: -0.16666666666666669s;animation-delay: -0.16666666666666669s;}.uil-default-css { position: relative;background:none;width:200px;height:200px;}.uil-default-css > div:nth-of-type(6){-webkit-animation: uil-default-anim 1s linear infinite;animation: uil-default-anim 1s linear infinite;-webkit-animation-delay: -0.08333333333333331s;animation-delay: -0.08333333333333331s;}.uil-default-css { position: relative;background:none;width:200px;height:200px;}.uil-default-css > div:nth-of-type(7){-webkit-animation: uil-default-anim 1s linear infinite;animation: uil-default-anim 1s linear infinite;-webkit-animation-delay: 0s;animation-delay: 0s;}.uil-default-css { position: relative;background:none;width:200px;height:200px;}.uil-default-css > div:nth-of-type(8){-webkit-animation: uil-default-anim 1s linear infinite;animation: uil-default-anim 1s linear infinite;-webkit-animation-delay: 0.08333333333333337s;animation-delay: 0.08333333333333337s;}.uil-default-css { position: relative;background:none;width:200px;height:200px;}.uil-default-css > div:nth-of-type(9){-webkit-animation: uil-default-anim 1s linear infinite;animation: uil-default-anim 1s linear infinite;-webkit-animation-delay: 0.16666666666666663s;animation-delay: 0.16666666666666663s;}.uil-default-css { position: relative;background:none;width:200px;height:200px;}.uil-default-css > div:nth-of-type(10){-webkit-animation: uil-default-anim 1s linear infinite;animation: uil-default-anim 1s linear infinite;-webkit-animation-delay: 0.25s;animation-delay: 0.25s;}.uil-default-css { position: relative;background:none;width:200px;height:200px;}.uil-default-css > div:nth-of-type(11){-webkit-animation: uil-default-anim 1s linear infinite;animation: uil-default-anim 1s linear infinite;-webkit-animation-delay: 0.33333333333333337s;animation-delay: 0.33333333333333337s;}.uil-default-css { position: relative;background:none;width:200px;height:200px;}.uil-default-css > div:nth-of-type(12){-webkit-animation: uil-default-anim 1s linear infinite;animation: uil-default-anim 1s linear infinite;-webkit-animation-delay: 0.41666666666666663s;animation-delay: 0.41666666666666663s;}.uil-default-css { position: relative;background:none;width:200px;height:200px;}</style>
+
+</HEAD>
+<BODY>
+
+<div class="inline">x-axis:&nbsp;</div>
+<div class="inline">
+<FORM>
+    <SELECT id="xMetric">
+        <option value="LD%">LD%</option>
+        <option value="GB%">GB%</option>
+        <option value="PA">PA</option>
+        <option value="G">G</option>
+        <option value="OPS">OPS</option>
+        <option value="BB%">BB%</option>
+        <option value="SLG">SLG</option>
+        <option value="WAR">WAR</option>
+        <option value="BABIP">BABIP</option>
+        <option value="K%" SELECTED>K%</option>
+        <option value="IFFB%">IFFB%</option>
+        <option value="ISO">ISO</option>
+        <option value="FB%">FB%</option>
+        <option value="wOBA">wOBA</option>
+        <option value="AVG">AVG</option>
+        <option value="wRC+">wRC+</option>
+        <option value="OBP">OBP</option>
+    </SELECT>
+</FORM>
+</div>
+<div class="inline">y-axis:</div>
+<div class="inline">
+<FORM class="display:;">
+    <SELECT id="yMetric">
+        <option value="LD%">LD%</option>
+        <option value="GB%">GB%</option>
+        <option value="PA">PA</option>
+        <option value="G">G</option>
+        <option value="OPS">OPS</option>
+        <option value="BB%">BB%</option>
+        <option value="SLG">SLG</option>
+        <option value="WAR">WAR</option>
+        <option value="BABIP">BABIP</option>
+        <option value="K%">K%</option>
+        <option value="IFFB%">IFFB%</option>
+        <option value="ISO">ISO</option>
+        <option value="FB%">FB%</option>
+        <option value="wOBA">wOBA</option>
+        <option value="AVG" SELECTED>AVG</option>
+        <option value="wRC+">wRC+</option>
+        <option value="OBP">OBP</option>
+    </SELECT>
+</FORM>
+</div>
+
+<div id="loading" class="clearBoth">
+<div class='uil-default-css' style='transform:scale(0.86);'><div style='top:80px;left:93px;width:14px;height:40px;background:#00b2ff;-webkit-transform:rotate(0deg) translate(0,-60px);transform:rotate(0deg) translate(0,-60px);border-radius:10px;position:absolute;'></div><div style='top:80px;left:93px;width:14px;height:40px;background:#00b2ff;-webkit-transform:rotate(30deg) translate(0,-60px);transform:rotate(30deg) translate(0,-60px);border-radius:10px;position:absolute;'></div><div style='top:80px;left:93px;width:14px;height:40px;background:#00b2ff;-webkit-transform:rotate(60deg) translate(0,-60px);transform:rotate(60deg) translate(0,-60px);border-radius:10px;position:absolute;'></div><div style='top:80px;left:93px;width:14px;height:40px;background:#00b2ff;-webkit-transform:rotate(90deg) translate(0,-60px);transform:rotate(90deg) translate(0,-60px);border-radius:10px;position:absolute;'></div><div style='top:80px;left:93px;width:14px;height:40px;background:#00b2ff;-webkit-transform:rotate(120deg) translate(0,-60px);transform:rotate(120deg) translate(0,-60px);border-radius:10px;position:absolute;'></div><div style='top:80px;left:93px;width:14px;height:40px;background:#00b2ff;-webkit-transform:rotate(150deg) translate(0,-60px);transform:rotate(150deg) translate(0,-60px);border-radius:10px;position:absolute;'></div><div style='top:80px;left:93px;width:14px;height:40px;background:#00b2ff;-webkit-transform:rotate(180deg) translate(0,-60px);transform:rotate(180deg) translate(0,-60px);border-radius:10px;position:absolute;'></div><div style='top:80px;left:93px;width:14px;height:40px;background:#00b2ff;-webkit-transform:rotate(210deg) translate(0,-60px);transform:rotate(210deg) translate(0,-60px);border-radius:10px;position:absolute;'></div><div style='top:80px;left:93px;width:14px;height:40px;background:#00b2ff;-webkit-transform:rotate(240deg) translate(0,-60px);transform:rotate(240deg) translate(0,-60px);border-radius:10px;position:absolute;'></div><div style='top:80px;left:93px;width:14px;height:40px;background:#00b2ff;-webkit-transform:rotate(270deg) translate(0,-60px);transform:rotate(270deg) translate(0,-60px);border-radius:10px;position:absolute;'></div><div style='top:80px;left:93px;width:14px;height:40px;background:#00b2ff;-webkit-transform:rotate(300deg) translate(0,-60px);transform:rotate(300deg) translate(0,-60px);border-radius:10px;position:absolute;'></div><div style='top:80px;left:93px;width:14px;height:40px;background:#00b2ff;-webkit-transform:rotate(330deg) translate(0,-60px);transform:rotate(330deg) translate(0,-60px);border-radius:10px;position:absolute;'></div></div>
+</div>
+
+<div id="chart" class="clearBoth">
+<svg style='height:500px;width:800px;max-width:100%'></svg>
+</div>
+
+<script type="text/javascript">
+
+function redraw(xMetric,yMetric) {
+    nv.addGraph(function() {
+        var chart = nv.models.scatterChart()
+        .showDistX(true)    //showDist, when true, will display those little distribution lines on the axis.
+        .showDistY(true)
+        //.transitionDuration(350)
+        //.showLegend(false)
+        //.forceY([-3,7])
+        //.forceX([-3,5])
+        .color(d3.scale.category10().range());
+
+        var kRange = [8.9,33];
+        if (xMetric == 'K%') {chart.forceX(kRange);}
+        if (yMetric == 'K%') {chart.forceY(kRange);}
+
+        //Configure how the tooltip looks.
+        chart.tooltipContent(function(key, y, e, graph) {
+            return graph.point.tt;
+        });
+     
+        chart.scatter.useVoronoi(false); 
+        chart.scatter.onlyCircles(false);
+   
+        chart.xAxis.axisLabel(xMetric);
+        chart.yAxis.axisLabel(yMetric);
+    
+        var groups = ['Not Stephen Piscotty','Stephen Piscotty'];
+        var computeIndex = function(player) {
+        	if (player == 'Stephen Piscotty') {return 1;}
+        	else {return 0;}
+        }
+        d3.csv('interest.csv', function(data) {
+            var myData = [];
+            for (i = 0; i < groups.length; i++) {
+                myData.push({
+                    key: groups[i],
+                    values: []
+                });
+            }
+            data.forEach(function(d) {
+                var ix = computeIndex(d['Name']);
+                myData[ix].values.push({
+                        x: d[xMetric],
+                        y: d[yMetric],
+                        tt: d['Name'],
+                        shape: (d['Name']=='Stephen Piscotty' ? 'cross' : 'circle'),
+                        size: 0.9
+                });
+            });
+            d3.select('#chart svg')
+                .datum(myData)
+                .call(chart);
+            nv.utils.windowResize(chart.update);
+            
+            // Hide the loading image
+            var elt = document.getElementById('loading');
+            elt.style.display = 'none';
+        }); 
+        return chart;
+    });
+}
+redraw('K%','AVG');
+
+document.getElementById("xMetric").onchange = function() {
+    redraw(document.getElementById("xMetric").value,document.getElementById("yMetric").value);
+    return false;
+}
+
+document.getElementById("yMetric").onchange = function() {
+    redraw(document.getElementById("xMetric").value,document.getElementById("yMetric").value);
+    return false;
+}
+
+</script>
+
+</BODY>
+</HTML>
