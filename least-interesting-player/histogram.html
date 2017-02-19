@@ -1,0 +1,71 @@
+<HTML>
+<HEAD>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- Load c3.css -->
+<link href="/style/c3.min.css" rel="stylesheet" type="text/css">
+
+<!-- Load d3.js and c3.js -->
+<script src="/js/d3.v3.min.js" charset="utf-8"></script>
+<script src="/js/c3.min.js"></script>
+</HEAD>
+
+<BODY>
+<div id="chart"></div>
+<script type="text/javascript">
+d3.csv('histogram.csv', function(data) {
+    var labels = [];
+    var initials = [];
+    var hist_data = ['Interest Score'];
+    data.forEach(function(d) {
+        labels.push(d['Name']);
+        hist_data.push(d['zscore_square_sum']);
+    });
+
+    var initials = [];
+    for (var i=0; i<labels.length; i++)
+    {
+        var matches = labels[i].match(/\b(\w)/g);
+        initials.push(' ');
+    }
+    var chart = c3.generate({
+        bindto: '#chart',
+        title: {
+            text: '2016 Interest Scores'
+        },
+        data: {
+            columns: [
+                hist_data
+            ],
+            type: 'bar',
+        },
+    //    size: {width: 400},
+        bar: {
+            width: {
+                ratio: 0.5 
+            }
+        },
+        tooltip: {
+            format: {
+                title: function(d) {return '';},
+                name: function(a,b,c,d) {return labels[d];}
+            }
+        },
+        axis: {
+            x: {
+                type: 'category',
+                categories: initials,
+                tick: {count: 1}
+            },
+            y: {
+                tick: {
+                    format: d3.format("d")
+                },
+                label: 'Interest Score'
+            }
+        }
+    });
+    chart.legend.hide();
+});
+</script>
+</BODY>
+</HTML>
