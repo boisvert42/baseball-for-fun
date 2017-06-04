@@ -50,5 +50,6 @@ mean2 = alpha2/(alpha2+beta2)
 print mean2
 print mean2*162
 
+# New mode
 mymode = (alpha2-1)/(alpha2+beta2-2)
 print mymode*162
