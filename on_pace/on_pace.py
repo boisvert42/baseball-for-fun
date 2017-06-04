@@ -50,6 +50,9 @@ mean2 = alpha2/(alpha2+beta2)
 print mean2
 print mean2*162
 
+# Apply to rest of season only
+print mean2*152+10
+
 # New mode
 mymode = (alpha2-1)/(alpha2+beta2-2)
 print mymode*162
